@@ -15,16 +15,26 @@ public static int add(String numbers) {
         int sum = 0;
 
         for (String num : nums) {
-            sum += Integer.parseInt(num.trim());
+            sum += Integer.parseInt(num.trim());int number = Integer.parseInt(num.trim());
+            if (number < 0) {
+                throw new IllegalArgumentException("Negative numbers not allowed: " + number);
+            }
+            sum += number;
         }
 
         return sum;
 }
 
-    public static void main(String[] args) {
-        System.out.println(add("1,2,3"));
-        System.out.println(add("1,2,3,4,5,6,7,8,9,10"));
-        System.out.println(add("1\n2,3"));
-
+    public static void main(String args[]) {
+       System.out.println(add("1,2,3"));
+       System.out.println(add("1,2,3,4,5,6,7,8,9,10"));
+       System.out.println(add("1\n2,3"));
+       System.out.println(add("//;\n1;2"));
+       try {
+            int res = add("1,-2");
+            
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage()); 
+        }
     }
 }
